@@ -1,11 +1,14 @@
 import json
 
+_MODULE_PATH = __file__.replace("\\", "/")
+_PACKAGE_PATH = _MODULE_PATH.rsplit("/", 2)[0]
+
 class JsonSettingsService:
 
-    __TEMPLATE_JSON = "JsonData/DataEntryTemplate.json"
-    __WIFI_SETTINGS_JSON = "JsonData/WifiSettingsData.json"
-    __AP_SETTINGS_JSON = "JsonData/APSettingsData.json"
-    __OTHER_SETTINGS_JSON = "JsonData/OtherSettings.json"
+    __TEMPLATE_JSON = _PACKAGE_PATH + "/JsonData/DataEntryTemplate.json"
+    __WIFI_SETTINGS_JSON = _PACKAGE_PATH + "/JsonData/WifiSettingsData.json"
+    __AP_SETTINGS_JSON = _PACKAGE_PATH + "/JsonData/APSettingsData.json"
+    __OTHER_SETTINGS_JSON = _PACKAGE_PATH + "/JsonData/OtherSettings.json"
 
     def __init__(self) -> None:
         pass

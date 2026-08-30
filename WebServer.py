@@ -1,6 +1,6 @@
 
-from Services.JsonSettingsService import JsonSettingsService
-from Services.FileReaderService import FileReaderService
+from .Services.JsonSettingsService import JsonSettingsService
+from .Services.FileReaderService import FileReaderService
 import socket
 
 class WebServer():
