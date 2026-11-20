@@ -1,35 +1,35 @@
-from Services.JsonSettingsService  import JsonSettingsService
-from AccessPoint import AccessPoint
-from Services.FileReaderService import FileReaderService
-from WebServer import WebServer
-from Wifi import  Wifi
+from access_point import AccessPoint
+from services.file_reader_service import FileReaderService
+from services.json_settings_service import JsonSettingsService
+from web_server import WebServer
+from wifi import Wifi
 
 
-def credentialsSavedCallack() -> None:
-    webServer.stop()
+def credentials_saved_callback() -> None:
+    web_server.stop()
     ap.stop()
-    ssid, ssid_pwd = jsonSettingsService.getWifiSettings()
-    if not wifiConnecter.connectToWifi(ssid, ssid_pwd):
-        wifiConnecter.disconnectFromWifi()
+    ssid, ssid_pwd = json_settings_service.get_wifi_settings()
+    if not wifi_connector.connect_to_wifi(ssid, ssid_pwd):
+        wifi_connector.disconnect_from_wifi()
         print("Wifi not connected!")
-        ap_ssid, ap_pwd = jsonSettingsService.getAPSettings()
+        ap_ssid, ap_pwd = json_settings_service.get_ap_settings()
         ap.start(ap_ssid, ap_pwd)
-        webServer.start()
+        web_server.start()
         return
     print("Wifi connected!")
 
 
-fileReaderService = FileReaderService()
-jsonSettingsService = JsonSettingsService()
+file_reader_service = FileReaderService()
+json_settings_service = JsonSettingsService()
 
-ap_ssid, ap_pwd = jsonSettingsService.getAPSettings()
+ap_ssid, ap_pwd = json_settings_service.get_ap_settings()
 
 ap = AccessPoint()
 
-webServer = WebServer(port=80, dataSavedCallack=credentialsSavedCallack, fileReaderService=fileReaderService, jsonSettingsService=jsonSettingsService)
+web_server = WebServer(port=80, data_saved_callback=credentials_saved_callback, file_reader_service=file_reader_service, json_settings_service=json_settings_service)
 
-wifiConnecter = Wifi()
+wifi_connector = Wifi()
 
 ap.start(ap_ssid, ap_pwd)
-webServer.start()
+web_server.start()
 print("Nu ajunge aici")

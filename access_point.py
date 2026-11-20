@@ -1,12 +1,13 @@
 import network
 import time
 
+
 class AccessPoint:
-    """ 
+    """
     Class that provides the functionality to start/stop an Access Point
     """
 
-    def __init__(self) -> None:       
+    def __init__(self) -> None:
         self.__ap: network.WLAN
 
     def start(self, ap_ssid: str, ap_pwd: str) -> None:
@@ -23,7 +24,7 @@ class AccessPoint:
         while not self.__ap.active:
             print("Waiting")
             time.sleep(0.2)
-        
+
         print(f'Access point started with {self.__ap.ifconfig()}!')
 
     def stop(self) -> None:
