@@ -39,11 +39,11 @@ Write comments to explain intent, constraints, or non-obvious decisions—not to
 
 Preserve and build on the repository’s existing separation of concerns:
 
-- `AccessPoint.py` and `Wifi.py`: Wi-Fi hardware operations.
-- `WebServer.py`: HTTP server and request flow.
-- `Services/FileReaderService.py`: reading HTML assets.
-- `Services/JsonSettingsService.py`: settings JSON persistence.
-- `Html/` and `JsonData/`: templates and data files.
+- `access_point.py` and `wifi.py`: Wi-Fi hardware operations.
+- `web_server.py`: HTTP server and request flow.
+- `services/file_reader_service.py`: reading HTML assets.
+- `services/json_settings_service.py`: settings JSON persistence.
+- `html/` and `json_data/`: templates and data files.
 - `setup.py`: application startup and dependency wiring.
 
 Keep HTML rendering and request parsing out of persistence services, and keep hardware-specific operations out of the web server. If a change requires new responsibilities, place them in focused modules and update imports and startup wiring consistently.
